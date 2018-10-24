@@ -12,11 +12,13 @@ app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dis
 app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 
+app.set('views', path.join(__dirname, '/src/views'));
+app.set('view engine', 'ejs');
 
-app.get('/', (req, res)=>{
-  res.sendFile(path.join(__dirname, '/views/index.html'));
+app.get('/', (req, res) => {
+  res.render('index');
 });
 
 app.listen(3000, ()=>{
-  console.log(`listening on port ${chalk.green('3000')}`);
+  debug(`listening on port ${chalk.green('3000')}`);
 })
